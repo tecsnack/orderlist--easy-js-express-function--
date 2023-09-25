@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Orderliste</title>
+    <style>
+        .completed {
+            background-color: rgb(89, 102, 89);
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>shopping list</h1>
+
+    <input type="text" id="orderInput" placeholder="Add Groceries">
+    <button onclick="addToOrderList()">Got that!</button>
+
+    <ul id="orderList">
+        <!-- Here are the added Groceries-->
+    </ul>
+
+    <button onclick="clearOrderList()">Delete all</button>
+
+    <script>
+        function addToOrderList() {
+            const orderInput = document.getElementById("orderInput");
+            const orderText = orderInput.value.trim();
+            if (orderText !== "") {
+                const orderList = document.getElementById("orderList");
+                const listItem = document.createElement("li");
+                listItem.textContent = orderText;
+                orderList.appendChild(listItem);
+
+                // "Check"-Buttons
+                const checkButton = document.createElement("button");
+                checkButton.textContent = "Check";
+                checkButton.onclick = function () {
+                    listItem.classList.toggle("completed");
+                };
+                listItem.appendChild(checkButton);
+
+                orderInput.value = "";
+            }
+        }
+
+        function clearOrderList() {
+            const orderList = document.getElementById("orderList");
+            orderList.innerHTML = "";
+        }
+    </script>
+</body>
+</html>
